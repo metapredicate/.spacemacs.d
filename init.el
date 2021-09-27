@@ -13,8 +13,25 @@
 (setq ns-right-alternate-modifier nil)
 ;; -*- mode: emacs-lisp; lexical-binding: t -*-
 
+;; eclipse style comment hotkey
+;; https://stackoverflow.com/questions/20041904/eclipse-like-line-commenting-in-emacs/20064658#20064658
+(defun comment-eclipse ()
+  (interactive)
+  (let ((start (line-beginning-position))
+        (end (line-end-position)))
+    (when (or (not transient-mark-mode) (region-active-p))
+      (setq start (save-excursion
+                    (goto-char (region-beginning))
+                    (beginning-of-line)
+                    (point))
+            end (save-excursion
+                  (goto-char (region-end))
+                  (end-of-line)
+                  (point))))
+    (comment-or-uncomment-region start end)))
+
 ;; C-; is auto comment/uncomment line/block
-(global-set-key (kbd "C-;") 'comment-or-uncomment-region)
+(global-set-key (kbd "C-;") 'comment-eclipse)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; This file is loaded by Spacemacs at startup.
@@ -244,7 +261,8 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font or prioritized list of fonts.
    dotspacemacs-default-font '("Monaco"
-                               :size 13.0
+                               :size 1
+                               3.0
                                :weight normal
                                :width normal)
 
