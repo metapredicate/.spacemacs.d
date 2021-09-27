@@ -13,6 +13,8 @@
 (setq ns-right-alternate-modifier nil)
 ;; -*- mode: emacs-lisp; lexical-binding: t -*-
 
+;; C-; is auto comment/uncomment line/block
+(global-set-key (kbd "C-;") 'comment-or-uncomment-region)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; This file is loaded by Spacemacs at startup.
@@ -241,8 +243,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-colorize-cursor-according-to-state t
 
    ;; Default font or prioritized list of fonts.
-   dotspacemacs-default-font '("Terminus (TTF)"
-                               :size 14.0
+   dotspacemacs-default-font '("Monaco"
+                               :size 13.0
                                :weight normal
                                :width normal)
 
